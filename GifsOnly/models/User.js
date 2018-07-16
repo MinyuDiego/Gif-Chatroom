@@ -5,7 +5,8 @@ const userSchema = new Schema({
   username: String,
   password: String,
   email: String,
-  profileGif: String
+  profileGif: String,
+  moodPic: {type: String, default: ''}
 }, {
   timestamps: {
     createdAt: 'created_at',

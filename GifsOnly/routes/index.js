@@ -7,8 +7,5 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-router.get('/profile', ensureLoggedIn("/auth/login"),(req,res,next) =>{
-  console.log(req.user);
-  res.render('profile');
-})
+
 module.exports = router;

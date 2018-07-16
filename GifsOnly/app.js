@@ -16,7 +16,7 @@ const flash      = require("connect-flash");
 
 mongoose.Promise = Promise;
 mongoose
-  .connect('mongodb://localhost/project', {useMongoClient: true})
+  .connect('mongodb://127.0.0.1:27017/project', {useMongoClient: true})
   .then(() => {
     console.log('Connected to Mongo!')
   }).catch(err => {
@@ -36,7 +36,6 @@ app.use(cookieParser());
 
 app.use(session({
   secret: "basic-auth-secret",
-  cookie: { maxAge: 60000 },
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60 // 1 day
@@ -96,7 +95,7 @@ const index = require('./routes/index');
 app.use('/', index);
 
 const authRoutes = require('./routes/auth');
-app.use('/auth', authRoutes);
+app.use('/', authRoutes);
       
 
 module.exports = app;

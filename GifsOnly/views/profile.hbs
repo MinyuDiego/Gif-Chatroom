@@ -1,7 +1,32 @@
 <h1>Welcome {{user.username}}</h1>
 {{#if user.profileGif}}
-<img src="/uploads/{{user.profileGif}}" width='150px'>
-{{/if}}
+<img src="/uploads/{{user.profileGif}}" width='150px'> {{/if}}
 
-<a href='auth/logout'>Log out</a>
+<br>
+<a href='/logout'>Log out</a>
+<br>
 <a href='/'>Go to the Chatroom</a>
+<br>
+<br>
+<div id="searchForm">
+  <form action="/profile" method="POST">
+    <label for="search">MOOD: </label>
+    <input type="text" name="search" id="searchWooooooooooow">
+    <button>Search</button>
+  </form>
+  <br>
+  <form action="/profileWow" method="POST">
+    <button>I dont know myself. Lets see whats trending</button>
+  </form>
+</div>
+<br>
+<br> {{#if wow}} 
+
+<div class="clear">
+  {{#each wow}}
+  <div class="clickable">
+    <img src="{{this.images.fixed_width.url}}" alt="">
+  </div>
+  {{/each}} 
+</div>
+{{/if}}
