@@ -1,0 +1,7 @@
+<h1>Welcome {{user.username}}</h1>
+{{#if user.profileGif}}
+<img src="/uploads/{{user.profileGif}}" width='150px'>
+{{/if}}
+
+<a href='auth/logout'>Log out</a>
+<a href='/'>Go to the Chatroom</a>
