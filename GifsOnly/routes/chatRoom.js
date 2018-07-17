@@ -38,6 +38,10 @@ router.post("/chatRoom", ensureLoggedIn("/login"), (req, res, next) => {
   });
 });
 
+/* router.get('/chatRoomSearch',  ensureLoggedIn("/login"), (req, res, next) =>{
+  res.redirect('/chatRoom');
+}) */
+
 router.post("/chatRoomSearch", ensureLoggedIn("/login"), (req, res, next) => {
   const search = req.body.search;
   const info = axios.create({
@@ -56,6 +60,23 @@ router.post("/chatRoomSearch", ensureLoggedIn("/login"), (req, res, next) => {
       res.render("chatRoom", { messages, activeUsers, searchResult: datos.data.data });
     })})})
     .catch(err => console.log(err));
+});
+
+router.post("/chatRoomGifMessage", ensureLoggedIn("/login"), (req, res, next) => {
+  const selectedGif = req.body.imgSrc;
+  let newGifMessage={
+    authorId:req.user,
+    messageGif:selectedGif,
+    messageContent: ''
+  }
+  Message.insertMany(newGifMessage, function(err, res) {
+    if (err) throw err;
+    console.log("1 document inserted");
+});
+});
+
+router.get("/deleteMessage/:id", ensureLoggedIn(), (req, res) => {
+  Message.findByIdAndRemove(req.params.id, () => res.redirect("/chatRoom"));
 });
 
 module.exports = router;

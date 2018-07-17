@@ -16,7 +16,6 @@ $(function() {
     axios.post("http://localhost:3000/moodWow", {imgSrc}).then(res => {
       return res;
     });
-
     $(".clear").empty();
     newDiv.append(img);
     newDiv.append(cambiarDiv);
@@ -34,6 +33,11 @@ $(function() {
     $(".message-form__input").html("")
    });
 
-  $('#findGif').click(function(){
+  $('.chatClickable').click(function(){
+    const imgSrc = $(this).children()[0].currentSrc;
+    axios.post("http://localhost:3000/chatRoomGifMessage", {imgSrc}).then(res => {
+      return res;
+  })
+  window.location.reload();
   })
 });

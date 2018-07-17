@@ -4,16 +4,26 @@
 </div>
 <div class="messages">
   {{#each messages}}
+  {{#if messageContent}}
   <p class="message">
-    {{this.messageContent}} by {{this.authorId.username}}
+    {{this.messageContent}} by {{this.authorId.username}}<br> 
+    <a href=''>react</a>&nbsp&nbsp<a href='/chatRoom/deleteMessage/'>delete</a>
   </p>
+  {{/if}}
+  {{#if messageGif}}
+  <div>
+  <br>
+  <img src={{this.messageGif}} alt=""> by {{this.authorId.username}}<br>
+  <a href=''>react</a>&nbsp&nbsp<a href=''>delete</a>
+  </div>
+  {{/if}}
   {{/each}}
 </div>
 
 {{#if trending}}
 <div class="clear" id='trendingclear'>
   {{#each trending}}
-  <div class="">
+  <div class="chatClickable">
     <img src="{{this.images.fixed_width.url}}" alt="">
   </div>
   {{/each}} 
@@ -23,7 +33,7 @@
 {{#if searchResult}}
 <div class="">
   {{#each searchResult}}
-  <div class="">
+  <div class="chatClickable">
     <img src="{{this.images.fixed_width.url}}" alt="">
   </div>
   {{/each}} 
