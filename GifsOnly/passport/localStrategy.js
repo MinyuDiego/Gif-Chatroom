@@ -1,6 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User          = require('../models/User');
+const Chat         = require('../models/Chat');
 const bcrypt        = require('bcrypt');
 
 passport.use(new LocalStrategy((username, password, next) => {
@@ -21,7 +22,17 @@ passport.use(new LocalStrategy((username, password, next) => {
     }
 
     foundUser.isLoggedIn = true;
-    foundUser.save();
+    Chat.find({isPublic: true})
+    .then(chats =>{
+      chats.forEach(function(e){
+        e.users.unshift(foundUser._id)
+      })
+       foundUser.save()
+       .then(()=>chats.forEach(function(e){
+         e.save()
+       }))
+    })
+    
     next(null, foundUser);
   });
 }));

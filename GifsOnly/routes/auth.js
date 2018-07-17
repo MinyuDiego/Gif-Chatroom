@@ -9,6 +9,7 @@ const multer = require("multer");
 const upload = multer({ dest: "./public/uploads/" });
 const { ensureLoggedIn } = require("connect-ensure-login");
 const axios = require("axios");
+const Chat         = require('../models/Chat');
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -66,10 +67,20 @@ authRoutes.post("/signup", upload.single("photo"), (req, res, next) => {
 });
 
 authRoutes.get("/logout", (req, res) => {
+  const id = req.user._id;
   User.findByIdAndUpdate(req.user._id, {isLoggedIn: false}, {new:true})
-  .then(() => {
+  .then((user) => {
+    Chat.find({isPublic: true})
+    .then(chats =>{
+      chats.forEach(function(e){
+        e.users.splice(e.users.indexOf(user._id),1)
+      })
+       chats.forEach(function(e){
+         e.save()
+       })
+    })
     req.logout();
-  res.redirect("/");})
+    res.redirect("/");})
   
 });
 
