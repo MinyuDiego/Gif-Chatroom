@@ -1,0 +1,27 @@
+<div class="members-count">{{activeUsers.length}} users active in the room</div>
+<div class="members-list">
+  {{#each activeUsers}}
+    {{this.username}}
+  {{/each}}
+</div>
+<div class="messages">
+  {{#each messages}}
+    <p class="message">
+      {{this.messageContent}} by {{this.authorId.username}}
+    </p>
+  {{/each}}
+</div>
+{{#if trending}} 
+<div class="gifs">
+  {{#each trending}}
+  <div class="click">
+    <img src="{{this.images.fixed_width.url}}" alt="">
+  </div>
+  {{/each}} 
+</div>
+{{/if}}
+<button id="findGif">Find Gif</button>
+<form action="/chatRoom" class="message-form" method="POST" >
+  <input name="messageWow" class="message-form__input" placeholder="Type a message.." type="text" maxlength="50" required/>
+  <button class="message-form__button" type="submit" >Send</button>
+</form>
