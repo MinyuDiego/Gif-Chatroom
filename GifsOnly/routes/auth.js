@@ -66,12 +66,14 @@ authRoutes.post("/signup", upload.single("photo"), (req, res, next) => {
 });
 
 authRoutes.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect("/");
+  User.findByIdAndUpdate(req.user._id, {isLoggedIn: false}, {new:true})
+  .then(() => {
+    req.logout();
+  res.redirect("/");})
+  
 });
 
 authRoutes.get("/profile", ensureLoggedIn("/login"), (req, res, next) => {
-  //console.log(req.user);
   res.render("profile");
 });
 

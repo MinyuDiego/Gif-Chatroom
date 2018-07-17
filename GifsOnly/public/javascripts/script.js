@@ -1,4 +1,5 @@
 $(function() {
+  
   console.log("IronGenerator JS imported successfully!");
   $(".clickable").click(function() {
     const imgSrc = $(this).children()[0].currentSrc;
@@ -27,4 +28,14 @@ $(function() {
     $(".textClass").empty();
     $(".moodClassWow").empty();
   });
+
+  $('.message-form').submit(function () {
+    $(".message-form__input").html("")
+   });
+
+  $('#findGif').click(function(){
+    axios.get("http://localhost:3000/chatRoomTrending").then(res => {
+      return res;
+    });
+  })
 });

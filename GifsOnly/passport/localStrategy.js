@@ -20,6 +20,8 @@ passport.use(new LocalStrategy((username, password, next) => {
       return;
     }
 
+    foundUser.isLoggedIn = true;
+    foundUser.save();
     next(null, foundUser);
   });
 }));

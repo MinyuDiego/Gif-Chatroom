@@ -5,6 +5,7 @@ const userSchema = new Schema({
   username: String,
   password: String,
   email: String,
+  isLoggedIn: {type: Boolean, default: false},
   profileGif: String,
   moodPic: {type: String, default: ''}
 }, {

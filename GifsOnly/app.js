@@ -96,6 +96,9 @@ app.use('/', index);
 
 const authRoutes = require('./routes/auth');
 app.use('/', authRoutes);
+
+const chatRoutes = require('./routes/chatRoom');
+app.use('/', chatRoutes);
       
 
 module.exports = app;
