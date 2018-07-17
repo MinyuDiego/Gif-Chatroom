@@ -33,9 +33,9 @@ $(function() {
     $(".message-form__input").html("")
    });
 
-  $('#findGif').click(function(){
-    axios.get("http://localhost:3000/chatRoomTrending").then(res => {
-      return res;
-    });
-  })
+  // $('#findGif').click(function(){
+  //   axios.get("http://localhost:3000/chatRoomTrending").then(res => {
+  //     return res;
+  //   });
+  // })
 });
