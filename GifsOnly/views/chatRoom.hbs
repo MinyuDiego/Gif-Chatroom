@@ -21,9 +21,21 @@
 </div>
 {{/if}} --}}
 <div class="gifs">
-  
+  {{#each trending}}
+  <div class="click">
+    <img src="{{this.images.fixed_width.url}}" alt="">
+  </div>
+  {{/each}}
+  <br>
+  <form action="/chatRoomSearch" method="POST">
+    <label for="search">Search: </label>
+    <input type="text" name="search" id="search">
+    <button>Search</button>
+  </form>
 </div>
-<button id="findGif">Find Gif</button>
+ <br>
+  <br>
+<button id="findGif">Gif Switch</button>
 <form action="/chatRoom" class="message-form" method="POST" >
   <input name="messageWow" class="message-form__input" placeholder="Type a message.." type="text" maxlength="50" required/>
   <button class="message-form__button" type="submit" >Send</button>
