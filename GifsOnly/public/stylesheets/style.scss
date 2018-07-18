@@ -1,7 +1,19 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import "scss/signup";
+* {
+  box-sizing: border-box;
 }
+
+body {
+  font-family: helvetica;
+  height: 100vh;
+  width: 100vw;
+  background:white;
+  margin: 0;
+  display: flex;
+transition:background 0.5s;
+}
+
+
 
 a {
   color: #00B7FF;
@@ -19,7 +31,7 @@ a {
   height: 100px;
 }
 
-body {
+/* body {
   box-sizing: border-box;
   margin: 0;
   padding: 13px;
@@ -27,7 +39,8 @@ body {
   flex-direction: column;
   max-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-}
+} */
+
 .members-count,
 .members-list,
 .messages {

@@ -40,10 +40,10 @@ $(function() {
     window.location.reload();
   });
 
-  let sendtext = () => {
-    var textSent = $(".message-form__input").val();
-    if (textSent == "") {
-      return;
+  let sendtext = () =>{
+    var textSent = $('.message-form__input').val();
+    if(textSent=='' || $('.message-form__input').length == 0){
+      return
     }
     var textSentDomFake =
       $(".message-form__input").val() +

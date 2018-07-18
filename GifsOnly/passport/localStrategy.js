@@ -5,6 +5,7 @@ const Chat  = require('../models/ChatRoom');
 const bcrypt = require('bcrypt');
 
 passport.use(new LocalStrategy((username, password, next) => {
+  console.log('bye');
   User.findOne({ username }, (err, foundUser) => {
     if (err) {
       next(err);

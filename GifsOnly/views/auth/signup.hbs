@@ -1,5 +1,5 @@
 <!-- views/auth/signup.hbs -->
-<h2>Signup</h2>
+{{!-- <h2>Signup</h2>
 
 <form action="/signup" method="POST" id="form-container" enctype="multipart/form-data">
   <label for="username">Username</label>
@@ -32,4 +32,82 @@
     Do you already have an account?
     <a href="/login">Login</a>
   </p>
+</form> --}}
+
+<form action="/signup" method="POST" id="form-container" enctype="multipart/form-data">
+<div class="scene">
+    {{#if message }}
+      <div class="error-message">{{ message }}</div>
+    {{/if}}
+    <div class="cube">
+		 <nav class="steps">
+			 <div class="dot step_1 done"></div>
+			 <div class="dot step_2"></div>
+			 <div class="dot step_3"></div>
+			 <div class="dot step_4"></div>
+			 <div class="dot step_5"></div>
+			 <div class="dot step_6"></div>
+		 </nav>
+		   <div class="cube__face  cube__face--front" id="step__1">
+            <div class="container">
+					<input type="text" class="label" placeholder="Please pick a color" disabled>
+					<div class="radio">
+						<div class="item blue" data-color="#04f5ff"></div>
+						<div class="item yellow" data-color="#EBFF00"></div>
+						<div class="item purple" data-color="#e90052"></div>
+						<div class="item green" data-color="#00ff85"></div>
+						<div class="item violet" data-color="#38003c"></div>
+            <input type="text" name="color" id="color-input" value=''>
+					</div>
+                <div class="btn" style="display:none">
+                    <span data-step="1">Continue</span>
+                </div>
+            </div>
+        </div>
+        <div class="cube__face cube__face--bottom" id="step__2">
+            <div class="container">
+                <input id="username" type="text" name="username" placeholder='Username?'required>
+                <div class="btn">
+                    <span data-step="2">Continue</span>
+                </div>
+            </div>
+        </div>
+        <div class="cube__face" id="step__3">
+            <div class="container">
+                <input type="email" name="email" class="form-control"  placeholder="Tell me your email adress"required>
+                <div class="btn">
+                    <span data-step="3">Continue</span>
+                </div>
+            </div>
+        </div>
+        <div class="cube__face" id="step__4">
+            <div class="container">
+                <input id="password" type="password" name="password" placeholder="Enter your password" required>
+                <div class="btn">
+                    <span data-step="4">Continue</span>
+                </div>
+            </div>
+        </div>
+        <div class="cube__face" id="step__5">
+            <div class="container">
+              <input type="file" name="photo" id="upLoadFileCentered">
+                <div class="btn">
+                    <span data-step="5">Continue</span>
+                </div>
+				</div>
+        </div>
+        <div class="cube__face" id="step__6">
+			  <div class="container">
+			  <input type="text"  class="label" placeholder="Ready for GifsOnly ?" type="submit" disabled>
+			  <div class="right">
+				  <label for="">No</label>
+				  <div class="checkbox">
+					  <div class="circle"></div>
+				  </div>
+				  <label for="">Yes</label>
+				</div>
+			</div>
+		 </div>
+    </div>
+</div>
 </form>

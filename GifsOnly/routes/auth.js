@@ -34,7 +34,7 @@ authRoutes.get("/signup", (req, res, next) => {
 });
 
 authRoutes.post("/signup", upload.single("photo"), (req, res, next) => {
-  const { username, password, email } = req.body;
+  const { username, password, email, color } = req.body;
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" });
     return;
@@ -53,6 +53,7 @@ authRoutes.post("/signup", upload.single("photo"), (req, res, next) => {
       username,
       email,
       password: hashPass,
+      color,
       profileGif: req.file ? req.file.filename : ""
     });
 
