@@ -10,6 +10,14 @@ a {
 .buttonCambio{
   display: block;
 }
+.message-form__button{
+  width: 100px;
+  height: 100px;
+}
+#findGifbutton{
+  width: 100px;
+  height: 100px;
+}
 
 body {
   box-sizing: border-box;
@@ -57,4 +65,8 @@ body {
 
 #findGif{
   width: 100px;
+}
+
+#pleaseHideforDom{
+  display: none;
 }

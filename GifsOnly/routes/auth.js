@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
-dotenv.config({path:'./.env.private'});
+dotenv.config({ path: './.env.private' });
 const express = require("express");
 const passport = require("passport");
 const authRoutes = express.Router();
@@ -66,11 +66,11 @@ authRoutes.post("/signup", upload.single("photo"), (req, res, next) => {
 });
 
 authRoutes.get("/logout", (req, res) => {
-  User.findByIdAndUpdate(req.user._id, {isLoggedIn: false}, {new:true})
-  .then(() => {
-    req.logout();
-  res.redirect("/");})
-  
+  User.findByIdAndUpdate(req.user._id, { isLoggedIn: false }, { new: true })
+    .then(() => {
+      req.logout();
+      res.redirect("/");
+    })
 });
 
 authRoutes.get("/profile", ensureLoggedIn("/login"), (req, res, next) => {
@@ -84,11 +84,10 @@ authRoutes.post("/profile", ensureLoggedIn("/login"), (req, res, next) => {
   });
   const axiosTicket = `search?q=${search}&api_key=${
     process.env.APIKEY
-  }&limit=20`;
+    }&limit=20`;
   info
     .get(`${axiosTicket}`)
     .then(datos => {
-      //console.log(res.data.data)
       res.render("profile", { wow: datos.data.data });
     })
     .catch(err => console.log(err));
@@ -100,11 +99,10 @@ authRoutes.post("/profileWow", ensureLoggedIn("/login"), (req, res, next) => {
   });
   const axiosTicket = `trending?&api_key=${
     process.env.APIKEY
-  }&limit=20`;
+    }&limit=20`;
   info
     .get(`${axiosTicket}`)
     .then(datos => {
-      //console.log(res.data.data)
       res.render("profile", { wow: datos.data.data });
     })
     .catch(err => console.log(err));
@@ -112,7 +110,7 @@ authRoutes.post("/profileWow", ensureLoggedIn("/login"), (req, res, next) => {
 
 authRoutes.post("/moodWow", ensureLoggedIn("/login"), (req, res, next) => {
   const moodPic = req.body.imgSrc;
-  User.findByIdAndUpdate(req.user._id, {moodPic},{new:true}).then(user => {
+  User.findByIdAndUpdate(req.user._id, { moodPic }, { new: true }).then(user => {
     console.log('modificado')
   })
 });

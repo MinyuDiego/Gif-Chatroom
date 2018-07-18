@@ -5,8 +5,9 @@ const messageSchema = new Schema({
   authorId: {type:Schema.Types.ObjectId, ref: 'User'},
   messageGif: {type:String, default:''},
   messageContent:{type: String},
+  messageType: {type:String, default:''},
+  //roomId: {type:Schema.Types.ObjectId, ref: 'ChatRoom'}
 }, {
-  usePushEach: true,
   timestamps: {
     createdAt: 'created_at',
     updatedAt: 'updated_at'

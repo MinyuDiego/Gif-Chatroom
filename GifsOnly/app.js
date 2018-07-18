@@ -81,13 +81,6 @@ app.use((req,res,next) => {
   next();
 })
 
-// Enable authentication using session + passport
-/* app.use(session({
-  secret: 'irongenerator',
-  resave: true,
-  saveUninitialized: true,
-  store: new MongoStore( { mongooseConnection: mongoose.connection })
-})) */
 
     
 
