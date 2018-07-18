@@ -62,13 +62,10 @@ body {
 #findGif {
   width: 100px; }
 
-<<<<<<< HEAD
-.click {
-  display: inline-block;
-  width: 33%; }
-=======
 #pleaseHideforDom {
   display: none; }
->>>>>>> dfcfe0c0aca2d5d6963d3e9f3113c18699d01726
+
+.js-example-basic-single {
+  width: 50%; }
 
 /*# sourceMappingURL=style.css.map */

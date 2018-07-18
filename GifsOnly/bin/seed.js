@@ -8,7 +8,7 @@ mongoose.connect(dbName);
 
 const chat = 
   {
-    name: "Public Chat",
+    name: "Public Chat Room",
     users:[],
     isPublic:true
   }

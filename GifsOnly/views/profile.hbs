@@ -12,8 +12,7 @@
 <br>
 <a href='/logout'>Log out</a>
 <br>
-<a href='/chatRoom'>Go to the Chatroom</a>
-<br>
+
 <a href='/userhomepage'>Home Page</a>
 <br>
 <div id="searchForm">
@@ -29,10 +28,10 @@
 </div>
 <br>
 <br> 
-<h4>Chats</h4>
+<h4>Active Chats  -  <a href="/createChatRoom">Create a chat</a></h4>
 {{#each chats}}
   <div class="chat">
-    <a href="/chatRoom/{{this._id}}">{{this.name}}</a>
+    <a href="/chatRoom/{{this._id}}">{{this.name}}</a> - <span><a href="/delete/{{this._id}}">Delete Chat</a></span>
   </div>
 {{/each}} 
   <br>

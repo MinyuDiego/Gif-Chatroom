@@ -25,7 +25,7 @@ passport.use(new LocalStrategy((username, password, next) => {
     Chat.find({isPublic: true})
     .then(chats =>{
       chats.forEach(function(e){
-        e.users.unshift(foundUser._id)
+        e.participants.unshift(foundUser._id)
       })
        foundUser.save()
        .then(()=>chats.forEach(function(e){

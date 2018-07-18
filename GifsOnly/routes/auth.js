@@ -9,7 +9,7 @@ const multer = require("multer");
 const upload = multer({ dest: "./public/uploads/" });
 const { ensureLoggedIn } = require("connect-ensure-login");
 const axios = require("axios");
-const Chat         = require('../models/ChatRoom');
+const Chat  = require('../models/ChatRoom');
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -73,7 +73,7 @@ authRoutes.get("/logout", (req, res) => {
     Chat.find({isPublic: true})
     .then(chats =>{
       chats.forEach(function(e){
-        e.users.splice(e.users.indexOf(user._id),1)
+        e.participants.splice(e.participants.indexOf(user._id),1)
       })
        chats.forEach(function(e){
          e.save()
@@ -85,7 +85,7 @@ authRoutes.get("/logout", (req, res) => {
 });
 
 authRoutes.get("/profile", ensureLoggedIn("/login"), (req, res, next) => {
-  Chat.find({ users: { $in: [ req.user._id ]} } )
+  Chat.find({ participants: { $in: [ req.user._id ]} } )
   .then(chats => {
     res.render("profile",{chats});
   })
@@ -103,7 +103,7 @@ authRoutes.post("/profile", ensureLoggedIn("/login"), (req, res, next) => {
   info
     .get(`${axiosTicket}`)
     .then(datos => {
-      Chat.find({ users: { $in: [ req.user._id ]} } )
+      Chat.find({ participants: { $in: [ req.user._id ]} } )
       .then(chats => {
         console.log(chats)
         res.render("profile", { wow: datos.data.data , chats});
@@ -123,7 +123,7 @@ authRoutes.post("/profileWow", ensureLoggedIn("/login"), (req, res, next) => {
   info
     .get(`${axiosTicket}`)
     .then(datos => {
-      Chat.find({ users: { $in: [ req.user._id ]} } )
+      Chat.find({ participants: { $in: [ req.user._id ]} } )
       .then(chats => {
         console.log(chats)
         res.render("profile", { wow: datos.data.data , chats});
