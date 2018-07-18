@@ -39,7 +39,7 @@ $(function () {
 
   let sendtext = () =>{
     var textSent = $('.message-form__input').val();
-    if(textSent==''){
+    if(textSent=='' || $('.message-form__input').length == 0){
       return
     }
     var textSentDomFake = $('.message-form__input').val()+' by '+ $('#hideAuthorIdUserName').text();
