@@ -20,8 +20,16 @@
   </form>
 </div>
 <br>
-<br> {{#if wow}} 
-
+<br> 
+<h4>Chats</h4>
+{{#each chats}}
+  <div class="chat">
+    <a href="/chatRoom/{{this._id}}">{{this.name}}</a>
+  </div>
+{{/each}} 
+  <br>
+  <br>
+{{#if wow}}
 <div class="clear">
   {{#each wow}}
   <div class="clickable">

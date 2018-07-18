@@ -1,42 +1,44 @@
 <div class="members-count">{{activeUsers.length}} users active in the room</div>
 <div class="members-list">
-  {{#each activeUsers}}
-    {{this.username}}
-  {{/each}}
+  {{#each activeUsers}} {{this.username}} {{/each}}
 </div>
 <div class="messages">
   {{#each messages}}
-    <p class="message">
-      {{this.messageContent}} by {{this.authorId.username}}
-    </p>
+  <p class="message">
+    {{this.messageContent}} by {{this.authorId.username}}
+  </p>
   {{/each}}
 </div>
-{{!-- {{#if trending}} 
-<div class="gifs">
+
+{{#if trending}}
+<div class="clear" id='trendingclear'>
   {{#each trending}}
-  <div class="click">
+  <div class="">
     <img src="{{this.images.fixed_width.url}}" alt="">
   </div>
   {{/each}} 
 </div>
-{{/if}} --}}
-<div class="gifs">
-  {{#each trending}}
-  <div class="click">
+{{/if}}
+
+{{#if searchResult}}
+<div class="">
+  {{#each searchResult}}
+  <div class="">
     <img src="{{this.images.fixed_width.url}}" alt="">
   </div>
-  {{/each}}
-  <br>
-  <form action="/chatRoomSearch" method="POST">
-    <label for="search">Search: </label>
-    <input type="text" name="search" id="search">
-    <button>Search</button>
-  </form>
+  {{/each}} 
 </div>
- <br>
-  <br>
-<button id="findGif">Gif Switch</button>
-<form action="/chatRoom" class="message-form" method="POST" >
+{{/if}}
+
+
+<form action="/chatRoomSearch" method="POST">
+<div>
+<input type="text" name="search" required>
+</div>
+  <button>FindGif</button>
+</form>
+
+<form action="/chatRoom" class="message-form" method="POST">
   <input name="messageWow" class="message-form__input" placeholder="Type a message.." type="text" maxlength="50" required/>
-  <button class="message-form__button" type="submit" >Send</button>
+  <button class="message-form__button" type="submit">Send</button>
 </form>

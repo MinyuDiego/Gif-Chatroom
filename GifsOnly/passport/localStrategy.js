@@ -1,8 +1,8 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const User          = require('../models/User');
-const Chat         = require('../models/Chat');
-const bcrypt        = require('bcrypt');
+const User  = require('../models/User');
+const Chat  = require('../models/ChatRoom');
+const bcrypt = require('bcrypt');
 
 passport.use(new LocalStrategy((username, password, next) => {
   User.findOne({ username }, (err, foundUser) => {

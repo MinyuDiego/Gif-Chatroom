@@ -16,6 +16,7 @@ $(function() {
     axios.post("http://localhost:3000/moodWow", {imgSrc}).then(res => {
       return res;
     });
+
     $(".clear").empty();
     newDiv.append(img);
     newDiv.append(cambiarDiv);
@@ -33,14 +34,6 @@ $(function() {
     $(".message-form__input").html("")
    });
 
-   $('#findGif').click(function(e){
-     e.preventDefault()
-    $(".gifs").toggle()
-    $(".message-form").toggle()
-   })
-  // $('#findGif').click(function(){
-  //   axios.get("http://localhost:3000/chatRoomTrending").then(res => {
-  //     return res;
-  //   });
-  // })
+  $('#findGif').click(function(){
+  })
 });

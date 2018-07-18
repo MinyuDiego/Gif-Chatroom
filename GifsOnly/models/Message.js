@@ -10,7 +10,9 @@ const Schema   = mongoose.Schema;
 // ];
 const messageSchema = new Schema({
   authorId: {type:Schema.Types.ObjectId, ref: 'User'},
+  roomId: {type:Schema.Types.ObjectId, ref: 'ChatRoom'},
   messageGif: {type:String, default:''},
+  messageType:{type:String, default: ""},
   messageContent:{type: String},
 }, {
   usePushEach: true,

@@ -9,7 +9,7 @@ const multer = require("multer");
 const upload = multer({ dest: "./public/uploads/" });
 const { ensureLoggedIn } = require("connect-ensure-login");
 const axios = require("axios");
-const Chat         = require('../models/Chat');
+const Chat         = require('../models/ChatRoom');
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -85,7 +85,11 @@ authRoutes.get("/logout", (req, res) => {
 });
 
 authRoutes.get("/profile", ensureLoggedIn("/login"), (req, res, next) => {
-  res.render("profile");
+  Chat.find({ users: { $in: [ req.user._id ]} } )
+  .then(chats => {
+    res.render("profile",{chats});
+  })
+    
 });
 
 authRoutes.post("/profile", ensureLoggedIn("/login"), (req, res, next) => {
@@ -99,8 +103,12 @@ authRoutes.post("/profile", ensureLoggedIn("/login"), (req, res, next) => {
   info
     .get(`${axiosTicket}`)
     .then(datos => {
-      //console.log(res.data.data)
-      res.render("profile", { wow: datos.data.data });
+      Chat.find({ users: { $in: [ req.user._id ]} } )
+      .then(chats => {
+        console.log(chats)
+        res.render("profile", { wow: datos.data.data , chats});
+      })
+      
     })
     .catch(err => console.log(err));
 });
@@ -115,8 +123,11 @@ authRoutes.post("/profileWow", ensureLoggedIn("/login"), (req, res, next) => {
   info
     .get(`${axiosTicket}`)
     .then(datos => {
-      //console.log(res.data.data)
-      res.render("profile", { wow: datos.data.data });
+      Chat.find({ users: { $in: [ req.user._id ]} } )
+      .then(chats => {
+        console.log(chats)
+        res.render("profile", { wow: datos.data.data , chats});
+      })
     })
     .catch(err => console.log(err));
 });
