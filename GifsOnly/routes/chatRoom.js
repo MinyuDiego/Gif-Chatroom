@@ -16,7 +16,7 @@ router.get("/chatRoom/:id", ensureLoggedIn("/login"), (req, res, next) => {
   });
   const axiosTicket = `trending?&api_key=${
     process.env.APIKEY
-  }&limit=3`;
+    }&limit=3`;
   info
     .get(`${axiosTicket}`)
     .then(datos => {
@@ -75,11 +75,6 @@ router.post("/chatRoom", ensureLoggedIn("/login"), (req, res, next) => {
   });
   newMessage.save().then(() => {
     console.log('message saved');
-    User.findById(req.user._id)
-      .then(userNeedUpdate => {
-        userNeedUpdate.messageSent.push(newMessage);
-        return userNeedUpdate.save();
-      })
   });
   const info = axios.create({
     baseURL: "http://api.giphy.com/v1/gifs/"
@@ -100,7 +95,6 @@ router.post("/chatRoom", ensureLoggedIn("/login"), (req, res, next) => {
         .populate("authorId")
         .then(messages => {
           User.find({ isLoggedIn: true }).then(activeUsers => {
-            //messageWow='';
             res.render("chatRoom", { messages, activeUsers, searchResult: datos.data.data });
           })
         })
@@ -117,7 +111,6 @@ router.post("/chatRoom", ensureLoggedIn("/login"), (req, res, next) => {
 
 router.post("/chatRoomGifMessage", ensureLoggedIn("/login"), (req, res, next) => {
   const selectedGif = req.body.imgSrc;
-  //console.log(selectedGif)
   let newGifMessage = {
     authorId: req.user,
     messageGif: selectedGif,
@@ -127,11 +120,23 @@ router.post("/chatRoomGifMessage", ensureLoggedIn("/login"), (req, res, next) =>
 
   Message.insertMany(newGifMessage).then(() => {
     console.log('gif message added to data base')
-    User.findById(req.user._id)
-      .then(userNeedUpdate => {
-        userNeedUpdate.messageSent.push(newGifMessage);
-        return userNeedUpdate.save();
-      })
   })
 });
+
+router.get("/chatRoom/deleteMessage/:id", ensureLoggedIn(), (req, res) => {
+  Message.findById(req.params.id)
+    .then(result => {
+      if (JSON.stringify(req.user._id) == JSON.stringify(result.authorId)) {
+        Message.findByIdAndRemove(req.params.id)
+          .then(() => {
+            console.log('removed')
+            res.redirect("/chatRoom");
+          })
+      } else {
+        console.log('cannot delete message not created by you')
+        res.redirect('/chatRoom');
+      }
+    })
+});
+
 module.exports = router;

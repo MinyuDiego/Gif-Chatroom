@@ -2,17 +2,25 @@
 {{#if user.profileGif}}
 <img src="/uploads/{{user.profileGif}}" width='150px'> {{/if}}
 
+<div class='moodPic'>
+{{#if user.moodPic}}
+  <p>Your Mood for the Day</p>
+  <img src={{user.moodPic}} width="200px">
+{{/if}}
+</div>
+
 <br>
 <a href='/logout'>Log out</a>
 <br>
 <a href='/chatRoom'>Go to the Chatroom</a>
 <br>
+<a href='/userhomepage'>Home Page</a>
 <br>
 <div id="searchForm">
   <form action="/profile" method="POST">
     <label for="search">MOOD: </label>
     <input type="text" name="search" id="searchWooooooooooow">
-    <button>Search</button>
+    <button class='profileSearchButton'>Search</button>
   </form>
   <br>
   <form action="/profileWow" method="POST">
@@ -35,6 +43,6 @@
   <div class="clickable">
     <img src="{{this.images.fixed_width.url}}" alt="">
   </div>
-  {{/each}} 
+  {{/each}}
 </div>
 {{/if}}

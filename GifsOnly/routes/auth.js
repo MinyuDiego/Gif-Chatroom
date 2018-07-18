@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
-dotenv.config({path:'./.env.private'});
+dotenv.config({ path: './.env.private' });
 const express = require("express");
 const passport = require("passport");
 const authRoutes = express.Router();
@@ -99,7 +99,7 @@ authRoutes.post("/profile", ensureLoggedIn("/login"), (req, res, next) => {
   });
   const axiosTicket = `search?q=${search}&api_key=${
     process.env.APIKEY
-  }&limit=20`;
+    }&limit=20`;
   info
     .get(`${axiosTicket}`)
     .then(datos => {
@@ -119,7 +119,7 @@ authRoutes.post("/profileWow", ensureLoggedIn("/login"), (req, res, next) => {
   });
   const axiosTicket = `trending?&api_key=${
     process.env.APIKEY
-  }&limit=20`;
+    }&limit=20`;
   info
     .get(`${axiosTicket}`)
     .then(datos => {
@@ -134,7 +134,7 @@ authRoutes.post("/profileWow", ensureLoggedIn("/login"), (req, res, next) => {
 
 authRoutes.post("/moodWow", ensureLoggedIn("/login"), (req, res, next) => {
   const moodPic = req.body.imgSrc;
-  User.findByIdAndUpdate(req.user._id, {moodPic},{new:true}).then(user => {
+  User.findByIdAndUpdate(req.user._id, { moodPic }, { new: true }).then(user => {
     console.log('modificado')
   })
 });

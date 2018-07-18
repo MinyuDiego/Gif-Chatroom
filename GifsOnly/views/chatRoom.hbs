@@ -3,42 +3,57 @@
   {{#each activeUsers}} {{this.username}} {{/each}}
 </div>
 <div class="messages">
-  {{#each messages}}
+  {{#each messages}} {{#if messageContent}}
   <p class="message">
     {{this.messageContent}} by {{this.authorId.username}}
+    <br>
+    <a href='' class='messageReactButton'>react</a>&nbsp&nbsp
+    <a href='/chatRoom/deleteMessage/{{this._id}}' class='messageDeleteButton'>delete</a>
   </p>
-  {{/each}}
+  {{/if}} {{#if messageGif}}
+  <div class='gifMessage'>
+    <div class = 'gifMessageContent'>
+    <img src={{this.messageGif}} alt=""> by {{this.authorId.username}}
+    </div>
+    <a href='' class='messageReactButton'>react</a>&nbsp&nbsp
+    <a href='/chatRoom/deleteMessage/{{this._id}}' class='messageDeleteButton'>delete</a>
+  </div>
+  {{/if}} {{/each}}
 </div>
 
 {{#if trending}}
-<div class="clear" id='trendingclear'>
+<div class="gifMessageChoices" id='trendingclear'>
   {{#each trending}}
-  <div class="">
+  <div class="chatClickable">
     <img src="{{this.images.fixed_width.url}}" alt="">
   </div>
-  {{/each}} 
+  {{/each}}
 </div>
-{{/if}}
-
+{{/if}} 
 {{#if searchResult}}
-<div class="">
+<div class="gitMessageChoicess">
   {{#each searchResult}}
-  <div class="">
+  <div class="chatClickable">
     <img src="{{this.images.fixed_width.url}}" alt="">
   </div>
-  {{/each}} 
+  {{/each}}
 </div>
 {{/if}}
 
+{{!-- <form action="/chatRoom" method="POST"> --}}
+  <div id='gifSearchBarMessage'>
+    <input type="text" name="search" required>
+  </div>
+  <button id='findGifbutton'>FindGif</button>
+{{!-- </form> --}}
 
-<form action="/chatRoomSearch" method="POST">
-<div>
-<input type="text" name="search" required>
-</div>
-  <button>FindGif</button>
-</form>
-
-<form action="/chatRoom" class="message-form" method="POST">
-  <input name="messageWow" class="message-form__input" placeholder="Type a message.." type="text" maxlength="50" required/>
+{{!-- <form action="/chatRoom" class="message-form" method="POST"> --}}
+  <input class="message-form__input" placeholder="Type a message.." type="text" maxlength="50" required>
   <button class="message-form__button" type="submit">Send</button>
-</form>
+{{!-- </form> --}}
+
+<a href='/logout'>Log out</a>
+<a href='/profile'>Go Back to My Profile</a>
+  <div id='pleaseHideforDom'>
+    <div id='hideAuthorIdUserName'>{{user.username}}</div>
+  </div>

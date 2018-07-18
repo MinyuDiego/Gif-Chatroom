@@ -8,6 +8,14 @@ a {
 .buttonCambio {
   display: block; }
 
+.message-form__button {
+  width: 100px;
+  height: 100px; }
+
+#findGifbutton {
+  width: 100px;
+  height: 100px; }
+
 body {
   box-sizing: border-box;
   margin: 0;
@@ -54,8 +62,13 @@ body {
 #findGif {
   width: 100px; }
 
+<<<<<<< HEAD
 .click {
   display: inline-block;
   width: 33%; }
+=======
+#pleaseHideforDom {
+  display: none; }
+>>>>>>> dfcfe0c0aca2d5d6963d3e9f3113c18699d01726
 
 /*# sourceMappingURL=style.css.map */
