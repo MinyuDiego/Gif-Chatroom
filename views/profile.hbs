@@ -1,0 +1,62 @@
+<div class="containerProfile">
+  <div class="service-details">
+    <img src="/uploads/{{user.profileGif}}" alt="realm">
+    <div class="service-hover-text">
+      <h3>Wanna Chat?</h3>
+      <h4></h4>
+      <a href="/createChatRoom">Create a chat</a>
+      {{#each chats}}
+      <div class="chat">
+        <a href="/chatRoom/{{this._id}}">{{this.name}}</a> -
+        <span>
+          <a href="/delete/{{this._id}}">Delete Chat</a>
+        </span>
+      </div>
+      {{/each}}
+    </div>
+    <div class="service-white service-text">
+      <p>Welcome {{user.username}} !</p>
+    </div>
+  </div>
+
+  <div class='moodPic'>
+    {{#if user.moodPic}}
+    <p>Your Mood for the Day</p>
+    <img src={{user.moodPic}} width="200px"> {{/if}}
+  </div>
+
+
+  <div id="searchForm">
+    <form action="/profile" method="POST">
+      <label for="search" id='moodFont'>MOOD: </label>
+      <div class='input-group'>
+        <input type="text" name="search" id="searchWooooooooooow" class='form-control'>
+        <div class='input-group-append'>
+          <button class='profileSearchButton btn btn-outline-danger'>Search</button>
+        </div>
+      </div>
+    </form>
+    <br>
+    <form action="/profileWow" method="POST">
+      <button class='btn btn-outline-danger'>I dont know myself. Lets see whats trending</button>
+    </form>
+  </div>
+
+  <div class='wrapperForClear'>
+    {{#if wow}}
+    <div class="clear">
+      {{#each wow}}
+      <div class="clickable">
+        <img src="{{this.images.fixed_width.url}}" alt="">
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+  </div>
+
+  <div style="text-align:center;margin-top:10px;font-family: 'Bangers', cursive;font-size: x-large;
+    display: flex;justify-content: space-evenly;">
+    <a href="/logout" class="myblog">Log out</a>
+    <a href='/userhomepage'>Home Page</a>
+  </div>
+</div>

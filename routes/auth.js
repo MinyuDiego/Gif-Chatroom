@@ -101,7 +101,7 @@ authRoutes.post("/profile", ensureLoggedIn("/login"), (req, res, next) => {
   });
   const axiosTicket = `search?q=${search}&api_key=${
     process.env.APIKEY
-    }&limit=20`;
+    }&limit=54`;
   info
     .get(`${axiosTicket}`)
     .then(datos => {
@@ -121,7 +121,7 @@ authRoutes.post("/profileWow", ensureLoggedIn("/login"), (req, res, next) => {
   });
   const axiosTicket = `trending?&api_key=${
     process.env.APIKEY
-    }&limit=20`;
+    }&limit=54`;
   info
     .get(`${axiosTicket}`)
     .then(datos => {

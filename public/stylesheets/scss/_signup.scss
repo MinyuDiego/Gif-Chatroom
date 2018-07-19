@@ -106,6 +106,7 @@
     display: none;
   }
   
+  #form-container{
   input:not([type=radio]),
   select{
     display: block;
@@ -131,6 +132,11 @@
   input::placeholder {
     color: #a0a0a0;
   }
+  
+  input.label::placeholder{
+  color:#202020 !important;
+  }
+}
   
   .cube__face .container {
     height: 100%;
@@ -174,10 +180,6 @@
   div.btn span:hover {
     color: #ffffff !important;
     background: #e90052;
-  }
-  
-  input.label::placeholder{
-  color:#202020 !important;
   }
   
   
