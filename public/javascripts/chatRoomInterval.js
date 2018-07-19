@@ -44,3 +44,8 @@ $(function() {
     });
   }, 1000);
 });
+
+function autoScrollList() {
+  var bottomList = document.getElementById("history-wrapper");
+  bottomList.scrollTop = bottomList.scrollHeight;
+}

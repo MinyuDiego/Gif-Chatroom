@@ -1,4 +1,5 @@
 $(function() {
+  autoScrollList()
   $(".js-example-basic-single").select2({
     placeholder: "Select users",
     allowClear: true
@@ -39,7 +40,10 @@ $(function() {
   $("body").on("click", ".buttonUpdate", function() {
     window.location.reload();
   });
-
+  function autoScrollList() {
+    var bottomList = document.getElementById("history-wrapper");
+    bottomList.scrollTop = bottomList.scrollHeight;
+}
   $("#findGifbutton").click(() => {
     var search = document.getElementsByName("search1")[0].value
     console.log(search)
@@ -75,6 +79,8 @@ $(function() {
 
   $(".message-form__button").click(function() {
     sendtext();
+    autoScrollList()
+    
   });
 
 
@@ -82,6 +88,7 @@ $(function() {
   $(document).keypress(function(e) {
     if (e.which == 13) {
       sendtext();
+      autoScrollList()
     }
   });
   
@@ -122,6 +129,7 @@ $(function() {
     gifDom.append(gifContentDom);
     gifDom.append(deleteLink);
     $(".messages").append(gifDom);
+    autoScrollList()
   });
 
   $('.carousel').carousel({

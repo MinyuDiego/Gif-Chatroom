@@ -1,5 +1,7 @@
 @import "scss/signup";
 @import 'scss/index';
+
+@import 'scss/chatRoom';
 * {
   box-sizing: border-box;
 }
@@ -57,12 +59,43 @@ a {
   padding: 15px;
   margin-bottom: 15px;
 }
-.messages {
-  flex-shrink: 1;
-  overflow: auto;
+.members-list{
+  height: 575px;
+  overflow-y: scroll
 }
-.message {
-  padding: 5px 0;
+.messages {
+  padding: 30px 30px 20px;
+  border-bottom: 2px solid white;
+  overflow-y: scroll;
+  height: 400px;
+}
+
+.message-data {
+  margin-bottom: 15px;
+}
+.message , .gifMessage{   
+    color: white;
+    padding: 18px 20px;
+    line-height: 26px;
+    font-size: 16px;
+    border-radius: 7px;
+    margin-bottom: 30px;
+    width: 90%;
+    position: relative;
+    background: rgb(118, 212, 118);
+    &:after {
+      bottom: 100%;
+      left: 7%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-bottom-color:rgb(118, 212, 118);
+      border-width: 10px;
+      margin-left: -10px;
+    }
 }
 .message .member {
   display: inline-block;
@@ -72,7 +105,6 @@ a {
   position: relative;
 }
 .message-form {
-  display: flex;
   flex-shrink: 0;
 }
 .message-form__input {
@@ -107,4 +139,13 @@ a {
 
 .webPageGif{
   max-width: 100%;
+}
+
+.members-list{
+  background: rgb(49, 66, 82);
+  color: white;
+}
+
+.col-8{
+  height: 575px;
 }
