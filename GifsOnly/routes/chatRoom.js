@@ -12,93 +12,65 @@ var idChat = undefined;
 
 router.get("/chatRoom/:id", ensureLoggedIn("/login"), (req, res, next) => {
   idChat = req.params.id;
-  const info = axios.create({
-    baseURL: "http://api.giphy.com/v1/gifs/"
-  });
-  const axiosTicket = `trending?&api_key=${process.env.APIKEY}&limit=3`;
-  info.get(`${axiosTicket}`).then(datos => {
-    Message.find({ roomId: { $in: [req.params.id] } })
-      .populate("authorId")
-      .then(messages => {
-        Chat.findById(req.params.id)
-          .populate("participants")
-          .then(chat => {
-            res.render("chatRoom", { messages,activeUsers:chat.participants, searchResult: datos.data.data });
+  const search = req.user.latestGifSearch;
+  if (!search) {
+    const info = axios.create({
+      baseURL: "http://api.giphy.com/v1/gifs/"
+    });
+
+    const axiosTicket = `trending?&api_key=${process.env.APIKEY}&limit=3`;
+    info.get(`${axiosTicket}`).then(datos => {
+      Message.find({ roomId: { $in: [req.params.id] } })
+        .populate("authorId")
+        .then(messages => {
+          Chat.findById(req.params.id)
+            .populate("participants")
+            .then(chat => {
+              res.render("chatRoom", { messages, activeUsers: chat.participants, trending: datos.data.data });
+            });
+        });
+    });
+  } else {
+    const info1 = axios.create({
+      baseURL: "http://api.giphy.com/v1/gifs/"
+    });
+    const axiosTicket1 = `search?q=${search}&api_key=${
+      process.env.APIKEY
+      }&limit=3`;
+    info1
+      .get(`${axiosTicket1}`)
+      .then(datos => {
+        Message.find({ roomId: { $in: [req.params.id] } })
+          .populate("authorId")
+          .then(messages => {
+            Chat.findById(req.params.id)
+              .populate("participants")
+              .then(chat => {
+                res.render("chatRoom", { messages, activeUsers: chat.participants, searchResult: datos.data.data });
+              });
           });
-      });
-  });
+      })
+  }
 });
-
-// router.post("/chatRoom", ensureLoggedIn("/login"), (req, res, next) => {
-//   const { messageWow } = req.body;
-//   const newMessage = new Message({
-//     authorId: req.user._id,
-//     messageContent: messageWow
-//   });
-//   newMessage.save().then(() => {
-//     Chat.find({ isPublic: true }).then(chats => {
-//       chats[0].messages.unshift(newMessage._id);
-//       chats[0].messages.reverse();
-//       chats[0].save()
-//       res.redirect("/chatRoom");
-//     });
-//   });
-// });
-
-// router.post("/chatRoomSearch", ensureLoggedIn("/login"), (req, res, next) => {
-//   const search = req.body.search;
-//   const info = axios.create({
-//     baseURL: "http://api.giphy.com/v1/gifs/"
-//   });
-//   const axiosTicket = `search?q=${search}&api_key=${
-//     process.env.APIKEY
-//   }&limit=3`;
-//   info
-//     .get(`${axiosTicket}`)
-//     .then(datos => {
-//       Message.find({})
-//       .populate("authorId")
-//       .then(messages => {
-//         User.find({ isLoggedIn: true }).then(activeUsers => {
-//       res.render("chatRoom", { messages, activeUsers, searchResult: datos.data.data });
-//     })})})
-//     .catch(err => console.log(err));
-// });
 
 router.post("/chatRoom", ensureLoggedIn("/login"), (req, res, next) => {
   const { textSent, search } = req.body;
-  console.log(search);
-  const newMessage = new Message({
-    authorId: req.user._id,
-    roomId: idChat,
-    messageContent: textSent,
-    messageType: "public"
-  });
-  newMessage.save().then(() => {
-    console.log("message saved");
-  });
-  const info = axios.create({
-    baseURL: "http://api.giphy.com/v1/gifs/"
-  });
-  const axiosTicket = `search?q=${search}&api_key=${
-    process.env.APIKEY
-  }&limit=3`;
-  info
-    .get(`${axiosTicket}`)
-    .then(datos => {
-      Message.find({})
-        .populate("authorId")
-        .then(messages => {
-          User.find({ isLoggedIn: true }).then(activeUsers => {
-            res.render("chatRoom", {
-              messages,
-              activeUsers,
-              searchResult: datos.data.data
-            });
-          });
-        });
+  console.log(search)
+  if (!search) {
+    const newMessage = new Message({
+      authorId: req.user._id,
+      roomId: idChat,
+      messageContent: textSent,
+      messageType: "public"
+    });
+    newMessage.save().then(() => {
+      console.log("message saved");
+    });
+  } else {
+    User.findByIdAndUpdate(req.user._id, { latestGifSearch: search }, { new: true }).then(user => {
+      console.log('gif search saved')
     })
-    .catch(err => console.log(err));
+  }
 });
 
 router.post(

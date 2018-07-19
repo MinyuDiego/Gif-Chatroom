@@ -74,6 +74,16 @@ $(function() {
     sendtext();
   });
 
+  $("#findGifbutton").click(() => {
+    var search = document.getElementsByName("search1")[0].value
+    console.log(search)
+    axios.post("/chatRoom", { search }).then(res => {
+      console.log("search successfully sent to the back");
+    });
+    $('input[type="text"]').val("");
+    window.location.reload();
+  })
+
   $(document).keypress(function(e) {
     if (e.which == 13) {
       sendtext();
@@ -123,4 +133,8 @@ $(function() {
     gifDom.append(deleteLink);
     $(".messages").append(gifDom);
   });
+
+  $('.carousel').carousel({
+    interval: 4000
+  })
 });

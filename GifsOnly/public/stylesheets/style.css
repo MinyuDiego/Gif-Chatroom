@@ -326,6 +326,34 @@ div.btn.violet span:hover {
 #upLoadFileCentered {
   margin-top: 17px; }
 
+#BigTitle {
+  font-size: 70px;
+  -webkit-margin-after: 1px; }
+
+.indexTitle {
+  font-family: 'Bangers', cursive;
+  font-size: 30px;
+  color: #e90052;
+  margin: 0 auto;
+  width: 960px;
+  text-align: center; }
+
+.indexLinks {
+  font-family: 'Bangers', cursive;
+  font-size: 40px;
+  margin: 0 auto;
+  width: 960px;
+  text-align: center; }
+
+.w-100 {
+  width: 100% !important;
+  height: 310px;
+  object-fit: contain; }
+
+#row-index {
+  height: 100vh;
+  align-items: center; }
+
 * {
   box-sizing: border-box; }
 
@@ -335,11 +363,20 @@ body {
   width: 100vw;
   background: white;
   margin: 0;
-  display: flex;
   transition: background 0.5s; }
 
+/* h1{
+  -webkit-margin-before: 0.5em;
+    -webkit-margin-after: 0.1em;
+}
+
+p{
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0.5em;
+} */
 a {
-  color: #00B7FF; }
+  color: #00B7FF;
+  text-decoration: none; }
 
 .buttonCambio {
   display: block; }
@@ -403,5 +440,8 @@ a {
 
 .js-example-basic-single {
   width: 50%; }
+
+.webPageGif {
+  max-width: 100%; }
 
 /*# sourceMappingURL=style.css.map */
