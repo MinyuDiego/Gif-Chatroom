@@ -1,0 +1,110 @@
+@import "scss/signup";
+@import 'scss/index';
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: helvetica;
+  height: 100vh;
+  width: 100vw;
+  background:white;
+  margin: 0;
+  transition:background 0.5s;
+}
+
+/* h1{
+  -webkit-margin-before: 0.5em;
+    -webkit-margin-after: 0.1em;
+}
+
+p{
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0.5em;
+} */
+
+a {
+  color: #00B7FF;
+  text-decoration: none;
+}
+
+.buttonCambio{
+  display: block;
+}
+.message-form__button{
+  width: 100px;
+  height: 100px;
+}
+#findGifbutton{
+  width: 100px;
+  height: 100px;
+}
+
+/* body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 13px;
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+} */
+
+.members-count,
+.members-list,
+.messages {
+  border: 1px solid #e4e4e4;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.messages {
+  flex-shrink: 1;
+  overflow: auto;
+}
+.message {
+  padding: 5px 0;
+}
+.message .member {
+  display: inline-block;
+}
+.member {
+  padding-right: 10px;
+  position: relative;
+}
+.message-form {
+  display: flex;
+  flex-shrink: 0;
+}
+.message-form__input {
+  flex-grow: 1;
+  border: 1px solid #dfdfdf;
+  padding: 10px 15px;
+  font-size: 16px;
+}
+.message-form__button {
+  margin: 10px;
+}
+
+#findGif{
+  width: 100px;
+}
+
+#pleaseHideforDom{
+  display: none;
+}
+
+.js-example-basic-single{
+  width: 200px
+}
+
+#chatId{
+  width: 0;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  width: 50%
+}
+
+.webPageGif{
+  max-width: 100%;
+}
