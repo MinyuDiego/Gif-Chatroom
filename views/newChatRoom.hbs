@@ -4,9 +4,10 @@
 <br>
 <label for="users">Add users: </label>
 <select multiple="multiple" name="users[]" class="js-example-basic-single" id="sel">
-  {{#each users}}
-  <option value="{{this._id}}">{{this.username}}</option>
-  {{/each}}
+ {{#each users}}
+ <option value="{{this._id}}">{{this.username}}</option>
+ {{/each}}
 </select>
 <br>
 <button id="createChat">Create chat</button>
+

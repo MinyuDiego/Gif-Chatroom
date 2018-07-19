@@ -7,28 +7,30 @@ $(function() {
   console.log("IronGenerator JS imported successfully!");
   $(".clickable").click(function() {
     const imgSrc = $(this).children()[0].currentSrc;
-    //console.log($(this).children())
     $("#searchForm").hide();
+    let wrapperDivProfile = $('<div>').addClass('btn-group');
     let newDiv = $("<div>").addClass("moodClassWow");
     let textDiv = $("<div>")
       .addClass("textClass")
       .html("New Mood");
     let cambiarDiv = $("<button>")
-      .addClass("buttonCambio")
+      .addClass("buttonCambio btn btn-outline-secondary")
       .html("Change");
     let updateMood = $("<button>")
-      .addClass("buttonUpdate")
+      .addClass("buttonUpdate btn btn-outline-success")
       .html("Update");
-    let img = $("<img>").attr("src", imgSrc);
+    let img = $("<img>").attr("src", imgSrc).css("display", "block");
     axios.post("/moodWow", { imgSrc }).then(res => {
       return res;
     });
-    $(".clear").empty();
+    $(".wrapperForClear").empty();
+    $(".wrapperForClear").hide();
+    newDiv.append(textDiv)
     newDiv.append(img);
-    newDiv.append(cambiarDiv);
-    newDiv.append(updateMood);
-    $("body").append(textDiv);
-    $("body").append(newDiv);
+    wrapperDivProfile.append(cambiarDiv);
+    wrapperDivProfile.append(updateMood);
+    newDiv.append(wrapperDivProfile);
+    $(".moodPic").append(newDiv);
   });
 
   $("body").on("click", ".buttonCambio", function() {
@@ -86,7 +88,7 @@ $(function() {
 
 
   $(document).keypress(function(e) {
-    if (e.which == 13) {
+    if (e.which == 13 /* && $(".message-form__input").val()!="" */) {
       sendtext();
       autoScrollList()
     }
