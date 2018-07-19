@@ -9,7 +9,7 @@ body {
   width: 100vw;
   background:white;
   margin: 0;
-  display: flex;
+ 
 transition:background 0.5s;
 }
 
@@ -85,5 +85,12 @@ a {
 }
 
 .js-example-basic-single{
-  width: 50%
+  width: 200px
+}
+
+#chatId{
+  width: 0;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
 }

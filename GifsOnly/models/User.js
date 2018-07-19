@@ -8,7 +8,8 @@ const userSchema = new Schema({
   isLoggedIn: { type: Boolean, default: false },
   profileGif: { type: String, required: true },
   moodPic: { type: String, default: '' },
-  color: {type: String}
+  color: {type: String},
+  latestGifSearch: String
 }, {
     usePushEach: true,
     timestamps: {

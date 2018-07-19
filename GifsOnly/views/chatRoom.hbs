@@ -1,3 +1,4 @@
+<input id="chatId" value= {{chat._id}}></input>
 <div class="members-count">{{activeUsers.length}} users active in the room</div>
 <div class="members-list">
   {{#each activeUsers}} {{this.username}} {{/each}}
@@ -7,7 +8,7 @@
   <p class="message">
     {{this.messageContent}} by {{this.authorId.username}}
     <br>
-    <a href='' class='messageReactButton'>react</a>&nbsp&nbsp
+    
     <a href='/chatRoom/deleteMessage/{{this._id}}' class='messageDeleteButton'>delete</a>
   </p>
   {{/if}} {{#if messageGif}}
@@ -15,7 +16,7 @@
     <div class = 'gifMessageContent'>
     <img src={{this.messageGif}} alt=""> by {{this.authorId.username}}
     </div>
-    <a href='' class='messageReactButton'>react</a>&nbsp&nbsp
+    
     <a href='/chatRoom/deleteMessage/{{this._id}}' class='messageDeleteButton'>delete</a>
   </div>
   {{/if}} {{/each}}
@@ -30,6 +31,7 @@
   {{/each}}
 </div>
 {{/if}} 
+
 {{#if searchResult}}
 <div class="gitMessageChoicess">
   {{#each searchResult}}
@@ -42,7 +44,7 @@
 
 {{!-- <form action="/chatRoom" method="POST"> --}}
   <div id='gifSearchBarMessage'>
-    <input type="text" name="search" required>
+    <input type="text" name="search1" required>
   </div>
   <button id='findGifbutton'>FindGif</button>
 {{!-- </form> --}}
@@ -57,3 +59,5 @@
   <div id='pleaseHideforDom'>
     <div id='hideAuthorIdUserName'>{{user.username}}</div>
   </div>
+
+<script src='/javascripts/chatRoomInterval.js'></script>
