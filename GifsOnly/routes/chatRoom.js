@@ -63,7 +63,7 @@ router.get("/chatRoom/:id", ensureLoggedIn("/login"), (req, res, next) => {
 
 router.post("/chatRoom", ensureLoggedIn("/login"), (req, res, next) => {
   const { textSent, search } = req.body;
-  if (!search) {
+  if (!search ) {
     const newMessage = new Message({
       authorId: req.user._id,
       roomId: idChat,
