@@ -1,4 +1,5 @@
 $(function() {
+  autoScrollList()
   setInterval(function(e) {
     const chatId = $("#chatId").val();
     $.ajax({
@@ -44,6 +45,11 @@ $(function() {
     });
   }, 1000);
 });
+
+function autoScrollList() {
+  var bottomList = document.getElementById("history-wrapper");
+  bottomList.scrollTop = bottomList.scrollHeight;
+}
 
 function autoScrollList() {
   var bottomList = document.getElementById("history-wrapper");

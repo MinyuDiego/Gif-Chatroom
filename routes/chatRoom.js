@@ -18,7 +18,7 @@ router.get("/chatRoom/:id", ensureLoggedIn("/login"), (req, res, next) => {
       baseURL: "http://api.giphy.com/v1/gifs/"
     });
 
-    const axiosTicket = `trending?&api_key=${process.env.APIKEY}&limit=3`;
+    const axiosTicket = `trending?&api_key=${process.env.APIKEY}&limit=10`;
     info.get(`${axiosTicket}`).then(datos => {
       Message.find({ roomId: { $in: [req.params.id] } })
         .populate("authorId")
@@ -41,7 +41,7 @@ router.get("/chatRoom/:id", ensureLoggedIn("/login"), (req, res, next) => {
     });
     const axiosTicket1 = `search?q=${search}&api_key=${
       process.env.APIKEY
-    }&limit=3`;
+    }&limit=10`;
     info1.get(`${axiosTicket1}`).then(datos => {
       Message.find({ roomId: { $in: [req.params.id] } })
         .populate("authorId")

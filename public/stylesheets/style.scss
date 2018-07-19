@@ -38,12 +38,10 @@ a {
   display: block;
 }
 .message-form__button{
-  width: 100px;
-  height: 100px;
+  height: 48px;
 }
 #findGifbutton{
-  width: 100px;
-  height: 100px;
+  height: 48px;
 }
 
 /* body {
@@ -152,4 +150,30 @@ a {
 
 .col-8{
   height: 575px;
+}
+
+#gifAux{
+  height: 475px;
+  overflow-y:scroll;
+  margin-top: 5%;
+}
+
+
+.gifMessageChoices{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gifMessageChoices>div{
+  width: 100px;
+  height: 100px;
+  box-sizing: border-box;
+}
+
+.chatClickable{
+  margin-bottom: 5px;
+}
+
+.newInput{
+  width: 80%;
 }

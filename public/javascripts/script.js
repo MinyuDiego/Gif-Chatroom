@@ -1,5 +1,4 @@
 $(function() {
-  autoScrollList()
   $(".js-example-basic-single").select2({
     placeholder: "Select users",
     allowClear: true

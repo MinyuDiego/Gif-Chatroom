@@ -1,63 +1,81 @@
-<input id="chatId" value= {{chat._id}}></input>
-<div class="members-count">{{activeUsers.length}} users active in the room</div>
-<div class="members-list">
-  {{#each activeUsers}} {{this.username}} {{/each}}
-</div>
-<div class="messages">
-  {{#each messages}} {{#if messageContent}}
-  <p class="message">
-    {{this.messageContent}} by {{this.authorId.username}}
-    <br>
-    
-    <a href='/chatRoom/deleteMessage/{{this._id}}' class='messageDeleteButton'>delete</a>
-  </p>
-  {{/if}} {{#if messageGif}}
-  <div class='gifMessage'>
-    <div class = 'gifMessageContent'>
-    <img src={{this.messageGif}} alt=""> by {{this.authorId.username}}
+<div class="container">
+  <input id="chatId" value={{chat._id}}></input>
+  <div class="members-count">{{activeUsers.length}} users active in the room</div>
+
+  <div class="row">
+
+    <div class="col-2">
+      <div class="members-list">
+        {{#each activeUsers}}
+        <p>{{this.username}}</p> {{/each}}
+      </div>
     </div>
-    
-    <a href='/chatRoom/deleteMessage/{{this._id}}' class='messageDeleteButton'>delete</a>
-  </div>
-  {{/if}} {{/each}}
+    <div class="col-7">
+
+      <div class="messages" id="history-wrapper">
+        {{#each messages}} {{#if messageContent}}
+        <p class="message">
+          {{this.messageContent}} by {{this.authorId.username}}
+          <br>
+
+          <a href='/chatRoom/deleteMessage/{{this._id}}' class='messageDeleteButton'>delete</a>
+        </p>
+        {{/if}} {{#if messageGif}}
+        <div class='gifMessage'>
+          <div class='gifMessageContent'>
+            <img src={{this.messageGif}} alt=""> by {{this.authorId.username}}
+          </div>
+
+          <a href='/chatRoom/deleteMessage/{{this._id}}' class='messageDeleteButton'>delete</a>
+        </div>
+        {{/if}} {{/each}}
+      </div>
+    <input class="message-form__input newInput" placeholder="Type a message.." type="text" maxlength="50" required>
+      <button class="message-form__button btn btn-success" type="submit">Send</button>
+    </div>
+<div class="col-3">
+  
+      <div id="gifAux">
+      	<div class="blockWrap">
+      	  {{#if trending}}
+      	  <div class="gifMessageChoices" id='trendingclear'>
+      	    {{#each trending}}
+      	    <div class="chatClickable">
+      	      <img src="{{this.images.fixed_width.url}}" alt="">
+      	    </div>
+      	    {{/each}}
+      	  </div>
+      	  {{/if}} 
+      	</div>
+      
+      	{{#if searchResult}}
+      	<div class="gitMessageChoicess">
+      	  {{#each searchResult}}
+      
+      	  <div class="chatClickable">
+      	    <img src="{{this.images.fixed_width.url}}" alt="">
+      	  </div>
+      	  {{/each}}
+      	</div>
+      	{{/if}}
+      </div> {{!--
+      <form action="/chatRoom" method="POST"> --}}
+        <div id='gifSearchBarMessage'>
+          <input type="text" name="search1" required>
+        </div>
+        <button class="btn btn-success" id='findGifbutton' type="submit">FindGif</button>
+        {{!-- </form> --}} {{!--
+      <form action="/chatRoom" class="message-form" method="POST"> --}}
+        
 </div>
-
-{{#if trending}}
-<div class="gifMessageChoices" id='trendingclear'>
-  {{#each trending}}
-  <div class="chatClickable">
-    <img src="{{this.images.fixed_width.url}}" alt="">
+      {{!-- </form> --}}
   </div>
-  {{/each}}
-</div>
-{{/if}} 
 
-{{#if searchResult}}
-<div class="gitMessageChoicess">
-  {{#each searchResult}}
-  <div class="chatClickable">
-    <img src="{{this.images.fixed_width.url}}" alt="">
-  </div>
-  {{/each}}
-</div>
-{{/if}}
-
-{{!-- <form action="/chatRoom" method="POST"> --}}
-  <div id='gifSearchBarMessage'>
-    <input type="text" name="search1" required>
-  </div>
-  <button id='findGifbutton' type="submit">FindGif</button>
-{{!-- </form> --}}
-
-{{!-- <form action="/chatRoom" class="message-form" method="POST"> --}}
-  <input class="message-form__input" placeholder="Type a message.." type="text" maxlength="50" required>
-  <button class="message-form__button" type="submit">Send</button>
-{{!-- </form> --}}
-
-<a href='/logout'>Log out</a>
-<a href='/profile'>Go Back to My Profile</a>
+  <a href='/logout'>Log out</a>
+  <a href='/profile'>Go Back to My Profile</a>
   <div id='pleaseHideforDom'>
     <div id='hideAuthorIdUserName'>{{user.username}}</div>
   </div>
 
-<script src='/javascripts/chatRoomInterval.js'></script>
+  <script src='/javascripts/chatRoomInterval.js'></script>
+</div>
