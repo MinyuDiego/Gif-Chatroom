@@ -307,7 +307,8 @@ div.btn.violet span:hover {
   width: 0;
   height: 0;
   opacity: 0;
-  visibility: hidden; }
+  visibility: hidden;
+  display: none; }
 
 #form-container {
   display: flex;
@@ -680,5 +681,11 @@ a {
 
 .newInput {
   width: 80%; }
+
+#hide {
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  width: 0; }
 
 /*# sourceMappingURL=style.css.map */
