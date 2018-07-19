@@ -7,7 +7,7 @@ const authRoutes = express.Router();
 const User = require("../models/User");
 const multer = require("multer");
 const upload = multer({ dest: "./public/uploads/" });
-const { ensureLoggedIn } = require("connect-ensure-login");
+const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
 const axios = require("axios");
 const Chat  = require('../models/ChatRoom');
 
@@ -15,12 +15,13 @@ const Chat  = require('../models/ChatRoom');
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-authRoutes.get("/login", (req, res, next) => {
+authRoutes.get("/login", ensureLoggedOut('/profile'), (req, res, next) => {
   res.render("auth/login", { message: req.flash("error") });
 });
 
 authRoutes.post(
   "/login",
+  ensureLoggedOut(),
   passport.authenticate("local", {
     successRedirect: "/profile",
     failureRedirect: "/login",
