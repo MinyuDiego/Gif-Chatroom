@@ -135,7 +135,7 @@ router.get("/createChatRoom", ensureLoggedIn(), (req, res) => {
 router.post("/createChatRoom", ensureLoggedIn("/login"), (req, res, next) => {
   const name = req.body.name;
   const participants = req.body.participants;
-  //if(!participants.includes(req.user._id)) participants.push(req.user._id)
+  if(!participants.includes(req.user._id)) participants.push(req.user._id)
   let newChatRoom = {
     name,
     participants: participants.slice()

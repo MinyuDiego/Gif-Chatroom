@@ -36,7 +36,7 @@ $(function() {
             .addClass("messageDeleteButton")
             .text("delete");
           gifContentDom.append(gif);
-          gifContentDom.append(" by " + $("#hideAuthorIdUserName").text());
+          gifContentDom.append(" by " + e.authorId.username);
           gifDom.append(gifContentDom);
           gifDom.append(deleteLink);
           $(".messages").append(gifDom);
