@@ -327,6 +327,9 @@ div.btn.violet span:hover {
 #upLoadFileCentered {
   margin-top: 17px; }
 
+#upLoadFileCentered {
+  padding-top: 15px; }
+
 #BigTitle {
   font-size: 70px;
   -webkit-margin-after: 1px; }
@@ -384,8 +387,7 @@ div.btn.violet span:hover {
   height: 100%;
   float: left;
   transition: all 0.8s;
-  -moz-transition: all 0.8s;
-  max-width: 282px; }
+  -moz-transition: all 0.8s; }
 
 /* .service-details:hover img {
 } */
@@ -670,11 +672,6 @@ a {
 .gifMessageChoices {
   display: flex;
   flex-wrap: wrap; }
-
-.gifMessageChoices > div {
-  width: 100px;
-  height: 100px;
-  box-sizing: border-box; }
 
 .chatClickable {
   margin-bottom: 5px; }

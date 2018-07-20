@@ -87,7 +87,7 @@ $(function() {
 
 
   $(document).keypress(function(e) {
-    if (e.which == 13 /* && $(".message-form__input").val()!="" */) {
+    if (e.which == 13  && $(".message-form__input").val()!="" && $('#history-wrapper').length) {
       sendtext();
       autoScrollList()
     }
