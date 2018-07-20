@@ -41,7 +41,7 @@ router.get("/chatRoom/:id", ensureLoggedIn("/login"), (req, res, next) => {
     });
     const axiosTicket1 = `search?q=${search}&api_key=${
       process.env.APIKEY
-    }&limit=10`;
+    }&limit=50`;
     info1.get(`${axiosTicket1}`).then(datos => {
       Message.find({ roomId: { $in: [req.params.id] } })
         .populate("authorId")
